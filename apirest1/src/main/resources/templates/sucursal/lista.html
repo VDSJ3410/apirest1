@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Sucursales</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap-icons/1.11.1/font/bootstrap-icons.css}"/>
+    <script th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
+</head>
+
+<body class="bg-light">
+<div class="container mt-5">
+    <h1 class="mb-4 text-center">Sucursales</h1>
+
+    <div class="mb-3 text-end">
+        <a class="btn btn-primary" th:href="@{/sucursales/nueva}">
+            <i class="bi bi-building-add"></i> Nueva Sucursal
+        </a>
+    </div>
+
+    <table class="table table-bordered table-hover table-striped align-middle">
+        <thead class="table-dark text-center">
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Dirección</th>
+            <th>Ciudad</th>
+            <th>Fecha de Apertura</th>
+            <th>Empresa</th>
+            <th>Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="s : ${sucursales}">
+            <td th:text="${s.idSucursal}"></td>
+            <td th:text="${s.nombre}"></td>
+            <td th:text="${s.direccion}"></td>
+            <td th:text="${s.ciudad}"></td>
+            <td th:text="${#dates.format(s.fechaApertura, 'yyyy-MM-dd')}"></td>
+            <td th:text="${s.empresa != null ? s.empresa.nombre : 'N/A'}"></td>
+            <td class="text-center">
+                <a class="btn btn-warning btn-sm me-2" th:href="@{|/sucursales/editar/${s.idSucursal}|}">
+                    <i class="bi bi-pencil-square"></i> Editar
+                </a>
+                <a class="btn btn-danger btn-sm" th:href="@{|/sucursales/eliminar/${s.idSucursal}|}">
+                    <i class="bi bi-trash3-fill"></i> Eliminar
+                </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <div class="mt-3">
+        <a class="btn btn-secondary" th:href="@{/empresas}">
+            <i class="bi bi-arrow-left-circle"></i> Volver a Empresas
+        </a>
+    </div>
+</div>
+</body>
+</html>

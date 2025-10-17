@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Puestos</title>
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap-icons/1.11.1/font/bootstrap-icons.css}" />
+    <script th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
+</head>
+<body class="bg-light">
+
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Listado de Puestos</h1>
+
+    <div class="d-flex justify-content-between mb-3">
+        <a class="btn btn-success" th:href="@{/puestos/nuevo}">
+            <i class="bi bi-plus-circle"></i> Nuevo Puesto
+        </a>
+        <a class="btn btn-secondary" th:href="@{/empleados}">
+            <i class="bi bi-arrow-left-circle"></i> Volver a Empleados
+        </a>
+    </div>
+
+    <table class="table table-striped table-bordered align-middle">
+        <thead class="table-dark text-center">
+        <tr>
+            <th>ID</th>
+            <th>Nombre del Puesto</th>
+            <th>Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="p : ${puestos}">
+            <td th:text="${p.idPuesto}"></td>
+            <td th:text="${p.nombre}"></td>
+            <td class="text-center">
+                <a class="btn btn-warning btn-sm" th:href="@{|/puestos/editar/${p.idPuesto}|}">
+                    <i class="bi bi-pencil-square"></i> Editar
+                </a>
+                <a class="btn btn-danger btn-sm" th:href="@{|/puestos/eliminar/${p.idPuesto}|}">
+                    <i class="bi bi-trash"></i> Eliminar
+                </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>

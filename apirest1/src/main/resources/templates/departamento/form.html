@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulario Departamento</title>
+    <meta content="width=device-width, initial-sacle=1" name="viewport">
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap-icons/1.11.1/font/bootstrap-icons.css}"/>
+    <script th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
+</head>
+<body>
+<div class="container-fluid">
+    <form method="post" th:action="@{/departamentos/guardar}" th:object="${departamento}">
+        <div class="row">
+            <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 text-center">
+                <h1 th:text="${departamento.idDepartamento !=null} ? 'Editar Departamento' : 'Nuevo Departamento'"></h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xxl-12 col-xl-4 col-lg-4 col-md-4 col-sm-4">
+                <label>Empresa</label>
+                <select class="form-select" required th:field="*{empresa.idEmpresa}">
+                    <option th:each="emp : ${empresa}" th:text="${emp.nombre}" th:value="${emp.idEmpresa}"></option>
+                </select>
+            </div>
+            <div class="col-xxl-12 col-xl-4 col-lg-4 col-md-4 col-sm-4">
+                <input th:field="*{idDepartamento}" type="hidden"/>
+            </div>
+        </div>
+        <br/>
+        <div class="row">
+            <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 text-start">
+                <button class="btn btn-outline-primary me-1"
+                type="submit">
+                    <i class="bi bi-floppy"></i>
+                    Guardar
+                </button>
+                <button class="btn btn-outline-succes me-1" th:onclick="'location.href=\'' + @{/departamento} + '\';'"
+                type="button">
+                    <i class="bi bi-backspace"></i>
+                    Volver
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>

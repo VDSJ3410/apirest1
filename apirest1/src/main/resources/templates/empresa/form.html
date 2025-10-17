@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulario Empresa</title>
+    <meta content="width=device-width, initial-sacle=1" name="viewport">
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap-icons/1.11.1/font/bootstrap-icons.css}"/>
+    <script th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></<script !src=""></script>
+</head>
+<body>
+<div class="container-fluid">
+    <form method="post" th:action="@{empresas/guardar}" th:object="${empresa}">
+        <div class="row">
+            <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 text-center">
+                <h1 th:text="${empresa.idEmpresa !=null} ? 'Editar Empresa' : 'Nueva Empresa'"></h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xxl-12 col-xl-4 col-lg-4 col-md-4 col-sm-4">
+                <label class="form-label">Nombre de la Empresa</label>
+                <input class="form-control" maxlength="50" required th:field="*{nombre}" type="text"/>
+            </div>
+            <div class="col-xxl-12 col-xl-4 col-lg-4 col-md-4 col-sm-4">
+                <input th:field="*{idEmpresa}" type="hidden"/>
+            </div>
+            <div class="col-xxl-12 col-xl-4 col-lg-4 col-md-4 col-sm-4"></div>
+        </div>
+        <br/>
+        <div class="row">
+            <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 text-start">
+                <button class="btn btn-outline-primary me-1"
+                type="submit">
+                    <i class="bi bi-floppy"></i>
+                    Guardar
+                </button>
+                <button class="btn btn-outline-success me-1" th:onclick="'location.href=\'' + @{/empresas} + '\';'"
+                type="button">
+                    <i class="bi bi-backspace"></i>
+                    Volver
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>
